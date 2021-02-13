@@ -19,6 +19,10 @@ export default class App extends Component {
     this.setState({ searchField: e.target.value });
   };
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
     return (
       <div className='App'>
         <h1>Monster Rolodex</h1>
@@ -29,7 +33,7 @@ export default class App extends Component {
           id='searchField'
           handleChange={this.handleChange}
         />
-        <Monsters monsters={this.state.monsters}></Monsters>
+        <Monsters monsters={filteredMonsters}></Monsters>
       </div>
     );
   }
